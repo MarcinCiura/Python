@@ -1,0 +1,80 @@
+----------------------------------------------------------------
+Pliki i katalogi
+----------------------------------------------------------------
+File - teczka (plik)
+Directory - segregator (katalog, folder)
+
+System plików - jedno drzewo
+Korzeń (root) - katalog /
+# Znak ~ można czytać tak: tylda, wężyk, falka)
+Katalog domowy (np. /home/student/) - katalog ~
+Katalog bieżący - katalog .
+Katalog nadrzędny - katalog ..
+
+/ (korzeń)
+├── bin/      # Podstawowe programy systemowe (np. ls, cp, mv)
+├── etc/      # Pliki konfiguracyjne całego systemu (zazwyczaj tekstowe)
+├── home/     # Katalogi domowe użytkowników (np. /home/student)
+├── media/    # Automatyczne punkty montowania napędów (pendrive, płyty)
+├── mnt/      # Tymczasowe punkty montowania dla administratora
+├── tmp/      # Pliki tymczasowe (czyszczone przy rebocie)
+├── usr/      # Programy i pliki użytkowników (aplikacje, biblioteki)
+└── var/      # Zmienne dane systemowe (logi, bazy danych, kolejki poczty)
+
+Ścieżka bezwzględna do pliku - zaczyna się od korzenia, na początku
+jest / (np. /home/student/Dokumenty/Python/README.md)
+
+Ścieżka względna do pliku - zaczyna się od katalogu bieżącego, na
+początku nie ma / (np. ../../.emacs.d/init.el albo lab4/lab4.ipynb)
+
+----------------------------------------------------------------
+Polecenia, flagi, argumenty
+----------------------------------------------------------------
+polecenie [flagi] [argumenty]
+flagi krótkie - pojedynczy minus i jedna litera (-v)
+flagi długie  - podwójny minus i pełny wyraz (--version)
+argumenty to zwykle ścieżki do plików
+
+Co robić, gdy ścieżka do pliku zaczyna się od minusa (zły zwyczaj)?
+Oddzielić flagi od argumentów podwójnym minusem:
+rm -rf -- -dziwny-katalog
+----------------------------------------------------------------
+Podstawowe polecenia
+----------------------------------------------------------------
+ls (list) - podaje zawartość katalogu
+ls              # podaje zawartość katalogu bieżącego
+ls lab1         # podaje zawartość katalogu lab1
+ls -l lab1      # -l (long) podaje szczegóły każdego pliku
+# Nazwy ukrytych plików zaczynają się od kropki, np. .config)
+ls -a ~         # -a (all) podaje także ukryte pliki
+ls -l -a
+ls -la          # flagi można łączyć
+----------------------------------------------------------------
+cp (copy) - kopiuje pliki i katalogi
+cp plik.txt kopia.txt
+# flaga -r (recursive) jest wymagana do kopiowania katalogu wraz
+# z zawartością
+cp -r katalog kopia
+----------------------------------------------------------------
+mv (move) - przenosi pliki i katalogi
+mv stara-nazwa.txt nowa-nazwa.txt
+mv plik.txt lab1        # przenosi plik.txt do katalogu lab1
+----------------------------------------------------------------
+mkdir (make directory) - tworzy katalogi
+mkdir nowy-katalog
+----------------------------------------------------------------
+rmdir (remove directory) - usuwa pusty katalog
+rmdir stary-pusty-katalog
+----------------------------------------------------------------
+rm (remove) - usuwa pliki i katalogi
+# Uwaga: w Unixie nie ma kosza. Co się stało, to się nie odstanie.
+rm plik.txt
+rm -rf katalog          # flaga -r (recursive) i -f (force)
+----------------------------------------------------------------
+man (manual) - wbudowana dokumentacja
+# strzałki góra/dół - przewijanie
+# spacja            - następna strona
+# klawisz q         - wyjście
+man cp
+man man
+----------------------------------------------------------------

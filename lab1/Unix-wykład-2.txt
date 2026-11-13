@@ -1,0 +1,135 @@
+----------------------------------------------------------------
+Polecenie less
+----------------------------------------------------------------
+Polecenie less służy do przeglądania treści pliku. Na przykład:
+
+        less plik.txt
+
+Podczas przeglądania treści pliku można między innymi:
+
++ przewijać tę treść w górę albo w dół, przytrzymując klawisze
+"strzałka w górę" albo "strzałka w dół"
+
++ przewijać tę treść o cały ekran w dół, naciskając klawisz spacji
+
++ wyjść z programu less, naciskając klawisz q
+
+----------------------------------------------------------------
+Polecenie wc (word count)
+----------------------------------------------------------------
+Polecenie wc zlicza linie, wyrazy i znaki w pliku. Na przykład:
+
+        wc pan-tadeusz.txt
+           10851   69095  493758
+
+Pierwsza liczba to liczba linii, druga liczba to liczba wyrazów, a
+trzecia liczba to liczba znaków. Aby zobaczyć tylko liczbę linii,
+stosujemy flagę -l (lines). Na przykład:
+
+        wc -l pan-tadeusz.txt
+           10851
+
+----------------------------------------------------------------
+Polecenie head
+----------------------------------------------------------------
+Polecenie head bez flag wypisuje pierwsze 10 linii pliku. Na
+przykład:
+
+        head pan-tadeusz.txt
+
+Polecenie head może przyjmować flagę -liczba_naturalna. Tak można
+zobaczyć pierwsze 5 linii pliku pan-tadeusz.txt:
+
+        head -5 pan-tadeusz.txt
+
+----------------------------------------------------------------
+Polecenie sort
+----------------------------------------------------------------
+Polecenie sort bez flag wypisuje linie pliku, posortowane
+alfabetycznie. Na przykład, gdy plik owoce.txt zawiera 3 linie:
+
+        jabłka 120
+        gruszki 5
+        banany 25
+
+to polecenie
+
+        sort owoce.txt
+
+wypisze:
+
+        banany 25
+        gruszki 5
+        jabłka 120
+
+Flaga -k wskazuje, według których pól każdej linii sortować. Każda
+linia dzieli się na pola, rozdzielone białymi znakami, czyli spacjami
+lub tabulacjami. Numery pól każdej linii zaczynają się od 1. Na
+przykład:
+
+        sort -k2 owoce.txt
+
+sortuje alfabetycznie według drugiego pola i wypisuje:
+
+        jabłka 120
+        banany 25
+        gruszki 5
+
+Kolejność drugich pól jest alfabetyczna: 1 < 2 < 5.
+Gdy pole zawiera liczby, zwykle oczekujemy innej kolejności
+sortowania, zgodnej z wartościami tych liczb. Do sortowania w takiej
+kolejności służy flaga -n (numeric sort). Na przykład:
+
+        sort -k2 -n owoce.txt
+
+wypisuje:
+
+        gruszki 5
+        banany 25
+        jabłka 120
+
+----------------------------------------------------------------
+Edytor emacs
+----------------------------------------------------------------
+Emacs to edytor tekstu dla programistów. Tak uruchamiamy emacs:
+
+        emacs plik.txt
+
+Aby wyjść z emacsa, naciskamy klawisze Ctrl+X, potem Ctrl+C, a potem
+zgadzamy się na zapisanie pliku, naciskając klawisz y (yes).
+
+----------------------------------------------------------------
+Przekierowanie wejścia i wyjścia
+----------------------------------------------------------------
+Wiele poleceń Unixa wypisuje wyniki na tak zwanym wyjściu. Normalnie
+wyjście jest skierowane na ekran komputera. Możemy przekierować
+wyjście do pliku, pisząc znak większości > po wszystkich flagach
+i argumentach polecenia, a po tym znaku nazwę tego pliku. Na przykład:
+
+        ls -al > lista_plików.txt
+        less lista_plików.txt
+
+Wiele poleceń Unixa pobiera dane z tak zwanego wejścia. Normalnie
+wejście pochodzi z klawiatury. Możemy przekierować na wejście programu
+plik, pisząc znak mniejszości < po wszystkich flagach i argumentach
+polecenia, a po tym znaku nazwę tego pliku.
+
+Na przykład polecenie wc bez argumentów zlicza linie, wyrazy i znaki
+na swoim wejściu:
+
+        wc < lista_plików.txt
+
+----------------------------------------------------------------
+Potoki
+----------------------------------------------------------------
+Możemy skierować wyjście jednego polecenia na wejście drugiego
+polecenia, pisząc znak kreski pionowej | między tymi poleceniami,
+tworząc w ten sposób tak zwany potok poleceń. Na przykład ten potok
+zlicza wszystkie pliki i katalogi w podkatalogu Dokumenty katalogu
+domowego:
+
+        ls -a ~/Dokumenty | wc -l
+
+Ten potok wypisuje pierwszą linię pliku w kolejności alfabetycznej:
+
+        sort plik.txt | head -1
